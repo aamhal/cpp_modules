@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 11:02:40 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/18 12:18:33 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/18 12:18:19 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,6 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& st){
 	return *this;
 }
 
-ScavTrap::~ScavTrap() {std::cout << "ScavTrap destructor called "<< std::endl;}
-
-
-void ScavTrap::guardGate() {
-	if (HitPoint)
-    	std::cout << "ScavTrap " << name << " is now in Gatekeeper mode!" << std::endl;
-	else 
-    	std::cout << "ScavTrap " << name << " is already dead can't activate gatekeeper mode !!" << std::endl;
-}
 
 void ScavTrap::attack(const std::string& target){
 	if (EnergiePoint > 0 && HitPoint > 0)
@@ -66,4 +57,14 @@ void ScavTrap::attack(const std::string& target){
 	}
 	else
 		std::cout << "not enought energie points or hit points to attack !!!" << std::endl;
+}
+
+ScavTrap::~ScavTrap() {std::cout << "ScavTrap destructor called "<< std::endl;}
+
+
+void ScavTrap::guardGate() {
+	if (HitPoint)
+    	std::cout << "ScavTrap " << name << " is now in Gatekeeper mode!" << std::endl;
+	else 
+    	std::cout << "ScavTrap " << name << " is already dead can't activate gatekeeper mode !!" << std::endl;
 }
