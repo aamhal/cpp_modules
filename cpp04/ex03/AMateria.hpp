@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:34:58 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/21 18:16:49 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/21 19:42:23 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
+class ICharacter;
+
 class AMateria
 {
 protected:
 	std::string type;
 public:
 AMateria();
-AMateria(std::string const & type);
+AMateria(std::string const n);
 AMateria(const AMateria& am);
 AMateria& operator=(const AMateria& am);
 virtual ~AMateria();

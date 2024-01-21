@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:08:20 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/21 17:10:50 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/21 19:41:09 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define ICHARACTER_H
 
 #include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {
