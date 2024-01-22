@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:17:21 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/22 11:04:42 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:01:04 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ class Character : public ICharacter
 private:
 	std::string name;
 	AMateria *inventory[4];
+	AMateria *array[100];
+	int count;
 public:
 Character();
 Character(std::string const type);

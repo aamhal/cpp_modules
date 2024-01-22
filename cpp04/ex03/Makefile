@@ -1,4 +1,4 @@
-NAME = oo
+NAME = Character
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SOURCE = main.cpp  Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp AMateria.cpp

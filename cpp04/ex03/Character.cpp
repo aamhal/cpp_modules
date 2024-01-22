@@ -6,23 +6,25 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:17:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/22 11:09:55 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/22 12:00:32 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
-AMateria *array[100] = {NULL};
-static int i = 0;
-
-
 Character::Character() : name("Default"){
+	count = 0;
 	for (int i = 0; i < 4; ++i)
 		inventory[i] = NULL;
+	for (int i = 0; i < 100; ++i)
+		array[i] = NULL;
 };
 Character::Character(std::string const type) : name(type){
+	count = 0;
 	for (int i = 0; i < 4; ++i)
 		inventory[i] = NULL;
+	for (int i = 0; i < 100; ++i)
+		array[i] = NULL;
 };
 Character::Character(const Character& am){
 	for (int i = 0; i < 4; ++i)
@@ -42,6 +44,9 @@ Character& Character::operator=(const Character& am){
 		inventory[1] = am.inventory[1];
 		inventory[2] = am.inventory[2];
 		inventory[3] = am.inventory[3];
+	for (int i = 0; i < 100; ++i)
+		array[i] = NULL;
+		count = 0;
 	}
 	return *this;
 }
@@ -65,6 +70,8 @@ void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4)
 	{
+		array[count] = inventory[idx];
+		count++;
 		inventory[idx] = NULL;
 	}
 }
@@ -73,25 +80,13 @@ void Character::use(int idx, ICharacter &target)
 {
 	if (idx >= 0 && idx < 4 && inventory[idx])
 	{
-		array[i] = inventory[idx];
-		i++;
 		inventory[idx]->use(target);
 	}   
 }
 
-
-void DeleteArray(AMateria **array)
-{
-	int i = 0;
-	while(array[i])
-	{
-		delete(array[i]);
-		i++;	
-	}
-}
-
 Character::~Character(){
+for (int i = 0; i < 100; ++i)
+	delete array[i];
 for (int i = 0; i < 4; ++i)
 	delete inventory[i];
-	DeleteArray(array);	
 }
