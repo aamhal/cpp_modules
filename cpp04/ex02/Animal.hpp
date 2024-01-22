@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 09:42:07 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/20 17:37:02 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/21 20:20:35 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	Animal& operator=(Animal& a);
 	virtual ~Animal();
 	const std::string& getType() const;
-	virtual void makeSound() const;
+	virtual void makeSound() const = 0;
 };
 
 

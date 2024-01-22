@@ -6,25 +6,27 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:17:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/21 18:20:06 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/22 11:09:55 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
+AMateria *array[100] = {NULL};
+static int i = 0;
+
+
 Character::Character() : name("Default"){
-	inventory[0] = NULL;
-	inventory[1] = NULL;
-	inventory[2] = NULL;
-	inventory[3] = NULL;
+	for (int i = 0; i < 4; ++i)
+		inventory[i] = NULL;
 };
 Character::Character(std::string const type) : name(type){
-	inventory[0] = NULL;
-	inventory[1] = NULL;
-	inventory[2] = NULL;
-	inventory[3] = NULL;
+	for (int i = 0; i < 4; ++i)
+		inventory[i] = NULL;
 };
 Character::Character(const Character& am){
+	for (int i = 0; i < 4; ++i)
+		inventory[i] = NULL;
 	*this = am;
 }
 Character& Character::operator=(const Character& am){
@@ -43,9 +45,6 @@ Character& Character::operator=(const Character& am){
 	}
 	return *this;
 }
-Character::~Character(){
-for (int i = 0; i < 4; ++i)
-	delete inventory[i];}
 		
 std::string const& Character::getName() const {return name;}
 
@@ -59,6 +58,7 @@ void Character::equip(AMateria *m)
 			return;
 		}
 	}
+	delete m;
 }
 
 void Character::unequip(int idx)
@@ -73,6 +73,25 @@ void Character::use(int idx, ICharacter &target)
 {
 	if (idx >= 0 && idx < 4 && inventory[idx])
 	{
+		array[i] = inventory[idx];
+		i++;
 		inventory[idx]->use(target);
 	}   
+}
+
+
+void DeleteArray(AMateria **array)
+{
+	int i = 0;
+	while(array[i])
+	{
+		delete(array[i]);
+		i++;	
+	}
+}
+
+Character::~Character(){
+for (int i = 0; i < 4; ++i)
+	delete inventory[i];
+	DeleteArray(array);	
 }

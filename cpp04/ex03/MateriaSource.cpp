@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:54:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/21 18:11:08 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/21 20:09:39 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ MateriaSource::MateriaSource() : countLearned(0)
 }
 
 MateriaSource::MateriaSource(const MateriaSource& ma){
+	for (int i = 0; i < 4; ++i)
+		LearnMatirias[i] = NULL;
 	*this = ma;
 }
 MateriaSource& MateriaSource::operator=(const MateriaSource& ma){
 	if (this != &ma)
 	{
-		 for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
 			delete LearnMatirias[i];
 			LearnMatirias[i] = NULL;
@@ -49,7 +51,9 @@ void MateriaSource::learnMateria(AMateria *m)
 	if (countLearned < 4)
 	{
 		LearnMatirias[countLearned++] = m;
+		return ;
 	}
+	delete m;
 }
 
 AMateria* MateriaSource::createMateria(const std::string &type)

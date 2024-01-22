@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:47:40 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/21 18:03:07 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/22 10:56:52 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ class MateriaSource : public IMateriaSource
 	MateriaSource(const MateriaSource &ma);
 	MateriaSource& operator=(const MateriaSource &ma);
 	~MateriaSource();
+
+
+	
 	void learnMateria(AMateria* m);
 	AMateria *createMateria(std::string const &type);
 	

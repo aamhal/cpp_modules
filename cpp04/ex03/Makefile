@@ -1,7 +1,7 @@
-NAME = a.ot
+NAME = oo
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SOURCE = main.cpp  Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
+SOURCE = main.cpp  Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp AMateria.cpp
 OBJS = $(SOURCE:.cpp=.o)
 
 all: $(NAME)

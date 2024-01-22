@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 09:56:08 by aamhal            #+#    #+#             */
-/*   Updated: 2024/01/20 18:31:40 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/01/21 20:22:42 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ Cat& Cat::operator=(Cat& a){
 }
 Cat::~Cat(){std::cout << "distructor of class Cat called"<< std::endl;delete brain;}
 
-void Cat::makeSound()const {std::cout <<"Cat bark!!"<<std::endl;
+void Cat::makeSound()const {std::cout <<"Cat sound!!"<<std::endl;
 }
 
