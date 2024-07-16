@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 07:24:15 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:40:30 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/01 10:16:09 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define AFORM_H
 
 #include "Bureaucrat.hpp"
+#include <fstream>
 
 class Bureaucrat;
 

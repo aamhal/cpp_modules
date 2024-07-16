@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IdentifyRealType.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:05:25 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:43 by aamhal           ###   ########.fr       */
+/*   Created: 2024/07/10 08:26:50 by aamhal            #+#    #+#             */
+/*   Updated: 2024/07/11 07:46:54 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Intern.hpp"
-#include "AForm.hpp"
-
-int main()
+#ifndef IDENTIFYREALTYPE_H
+#define IDENTIFYREALTYPE_H
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+class Base
 {
-    try{
-        Intern someRandomIntern;
-        AForm* rrf;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        delete rrf;
-    }
-     catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-	return 0;
-}
+public :
+	virtual~Base();
+};
+
+
+class A : public Base {};
+class B : public Base {};
+class C : public Base {};
+
+void identify(Base* p);
+void identify(Base& p);
+Base* generate();
+
+
+#endif

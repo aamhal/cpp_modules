@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:05:28 by aamhal            #+#    #+#             */
-/*   Updated: 2024/03/23 09:24:52 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/01 09:32:33 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ Bureaucrat::Bureaucrat(const std::string& name , int grade) : name(name) {
 }
 
 
-void Bureaucrat::setName(std::string const name){
-	const_cast<std::string&>(this->name) = name;
-}
-void Bureaucrat::setGrade(int grade){
-	this->grade = grade;
-}
 std::string Bureaucrat::getName() const {return this->name;}
 int Bureaucrat::getGrade() const {return this->grade;}
 

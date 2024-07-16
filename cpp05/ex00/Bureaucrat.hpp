@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:05:22 by aamhal            #+#    #+#             */
-/*   Updated: 2024/03/23 09:24:59 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/01 09:33:07 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ public:
 	Bureaucrat(const Bureaucrat& b);
 	Bureaucrat& operator=(const Bureaucrat& b);
 	~Bureaucrat();
-	void setName(std::string const name);
-	void setGrade(int grade);
 	std::string  getName() const;
 	int  getGrade() const;
 	void incrementGrade();

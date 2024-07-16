@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serialization.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:05:25 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:43 by aamhal           ###   ########.fr       */
+/*   Created: 2024/07/10 07:55:12 by aamhal            #+#    #+#             */
+/*   Updated: 2024/07/11 08:11:20 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Intern.hpp"
-#include "AForm.hpp"
+#ifndef SERIALIZATION_H
+#define SERIALIZATION_H
 
-int main()
+#include <iostream>
+
+struct Data
 {
-    try{
-        Intern someRandomIntern;
-        AForm* rrf;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        delete rrf;
-    }
-     catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-	return 0;
-}
+	int nbr;
+	std::string text;
+};
+
+class Serialization
+{
+private:
+	Serialization();
+public:
+	Serialization(Serialization& S);
+	Serialization &operator=(Serialization &s);
+	~Serialization();
+	static uintptr_t serialize(Data* ptr);
+	static Data* deserialize(uintptr_t raw);
+};
+
+
+#endif

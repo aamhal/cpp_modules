@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 09:18:10 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:46:01 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/01 10:36:43 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const & b) const {
         throw FormNotSignedException();
     if (b.getGrade() > getExecGrade())
         throw GradeTooLowException();
+        std::string s = b.getName();
+
+    std::ofstream outfile( s + "_shrubbery");
+    outfile << "       _-_\n    /~~   ~~\n /~~         ~~\n{               }\n \\  _-     -_  /\n   ~  \\ //  ~\n_- -   | | _- _\n  _ -  | |   -_\n      // \\" << std::endl;
+    outfile.close();
+    
 }

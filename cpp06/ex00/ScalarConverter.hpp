@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:05:25 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:43 by aamhal           ###   ########.fr       */
+/*   Created: 2024/07/02 08:14:17 by aamhal            #+#    #+#             */
+/*   Updated: 2024/07/11 08:11:27 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Intern.hpp"
-#include "AForm.hpp"
+#ifndef SCAALRCONVERTER_H
+#define SCAALRCONVERTER_H
 
-int main()
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <cmath>
+#include <iomanip>
+
+class ScalarConverter
 {
-    try{
-        Intern someRandomIntern;
-        AForm* rrf;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        delete rrf;
-    }
-     catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-	return 0;
-}
+private:
+	ScalarConverter();
+public:
+	ScalarConverter(const ScalarConverter &S);
+	ScalarConverter &operator=(const ScalarConverter &S);
+	~ScalarConverter();
+	static void convert(const std::string& input);
+};
+
+
+
+#endif

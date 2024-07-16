@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 09:24:28 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:45:46 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/01 11:25:19 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void PresidentialPardonForm::execute(Bureaucrat const& b) const{
         throw FormNotSignedException();
     if (b.getGrade() > getExecGrade())
         throw GradeTooLowException();
+		std::cout  << b.getName() <<" has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

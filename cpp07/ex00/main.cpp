@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:05:25 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:43 by aamhal           ###   ########.fr       */
+/*   Created: 2024/07/13 09:04:20 by aamhal            #+#    #+#             */
+/*   Updated: 2024/07/13 09:19:57 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Intern.hpp"
-#include "AForm.hpp"
+#include "whatever.hpp"
 
-int main()
-{
-    try{
-        Intern someRandomIntern;
-        AForm* rrf;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        delete rrf;
-    }
-     catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-	return 0;
+int main( void ) {
+int a = 2;
+int b = 3;
+::swap( a, b );
+std::cout << "a = " << a << ", b = " << b << std::endl;
+std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+std::string c = "chaine1";
+std::string d = "chaine2";
+::swap(c, d);
+std::cout << "c = " << c << ", d = " << d << std::endl;
+std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+return 0;
 }

@@ -5,25 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 15:05:25 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:50:43 by aamhal           ###   ########.fr       */
+/*   Created: 2024/07/02 09:07:49 by aamhal            #+#    #+#             */
+/*   Updated: 2024/07/02 09:12:03 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
-#include "Intern.hpp"
-#include "AForm.hpp"
+#include "ScalarConverter.hpp"
 
-int main()
+int main(int ac , char **av)
 {
-    try{
-        Intern someRandomIntern;
-        AForm* rrf;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        delete rrf;
-    }
-     catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
+	if (ac == 2)
+	{
+		ScalarConverter::convert(av[1]);
+	}
 	return 0;
 }
