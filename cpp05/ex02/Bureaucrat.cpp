@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:05:28 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:44:11 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/20 07:49:34 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,16 @@ const char* Bureaucrat::GradeTooHighException::what() const throw() {return "Gra
 const char* Bureaucrat::GradeTooLowException::what() const throw() {return "Grade too low";}
 const char* Bureaucrat::FormNotSignedException::what() const throw() {return "Grade not signed";}
 
-void Bureaucrat::signForm(std::string name, bool f){
-	if (f)
-		std::cout << name << " signed " << name << std::endl;
-	else
-		std::cout << name << " couldn’t sign " << name << " because " << name << "Grade too low" << std::endl;
+void Bureaucrat::signForm(AForm &f){
+	if (f.getSign())
+	{
+		std::cout << this->name << " signed " << f.getName() << std::endl;
+		
+	}
+	else 
+	{
+		std::cout << this->name << " couldn’t sign " << f.getName() << " because " << this->name << " grade too low" << std::endl;
+	}
 }
 
 void Bureaucrat::executeForm(AForm const & f) {

@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 07:45:57 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/02 08:33:27 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/20 08:08:08 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ Intern &Intern::operator=(const Intern &other) {
 		return *this;
 }
 Intern::~Intern() {}
+
 AForm* Intern::makeForm(const std::string &formName, const std::string &target)
 {
-	std::string array[] =  { "presidential pardon","robotomy request","presidential pardon"};
+	std::string array[] =  { "shrubbery request","robotomy request","presidential pardon"};
 	int j = 0;
 	for (int i =0; i <= 2 ; i++)
 	{
@@ -36,24 +37,25 @@ AForm* Intern::makeForm(const std::string &formName, const std::string &target)
 			j = i;
 			break;
 		}
+		j++;
 	}
-		switch (j)
-		{
-		case 0:
-			std::cout << "presidential pardon created " << std::endl;
-			return new ShrubberyCreationForm(target);
-		case 1:
-			std::cout << "robotomy request created " << std::endl;
-			return new RobotomyRequestForm(target);
-		case 2:
-			std::cout << "presidential pardon created " << std::endl;
-			return new PresidentialPardonForm(target);
-		
-		default:
-			std::cout << "Error: Form name \"" << formName << "\" not recognized." << std::endl;
-    		return NULL;
-		}
+	switch (j)
+	{
+	case 0:
+		std::cout << "shrubbery request created " << std::endl;
+		return new ShrubberyCreationForm(target);
+	case 1:
+		std::cout << "robotomy request created " << std::endl;
+		return new RobotomyRequestForm(target);
+	case 2:
+		std::cout << "presidential pardon created " << std::endl;
+		return new PresidentialPardonForm(target);
+	
+	default:
 		std::cout << "Error: Form name \"" << formName << "\" not recognized." << std::endl;
-    	return (NULL);
+		return NULL;
+	}
+	std::cout << "Error: Form name \"" << formName << "\" not recognized." << std::endl;
+	return (NULL);
 }
 

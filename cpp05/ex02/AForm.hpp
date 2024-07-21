@@ -6,12 +6,11 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 07:24:15 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 10:16:09 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:14:29 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AFORM_H
-#define AFORM_H
+#pragma once
 
 #include "Bureaucrat.hpp"
 #include <fstream>
@@ -60,4 +59,3 @@ public:
 
 std::ostream& operator<<(std::ostream& out, AForm const &f);
 
-#endif

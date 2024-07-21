@@ -6,12 +6,11 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 09:23:42 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:45:25 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:13:05 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_H
-#define PRESIDENTIALPARDONFORM_H
+#pragma once
 
 #include "AForm.hpp"
 
@@ -29,5 +28,3 @@ public:
 };
 
 
-
-#endif

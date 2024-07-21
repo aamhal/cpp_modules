@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 09:18:10 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 10:36:43 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/20 08:07:24 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {};
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const n) : AForm(n, 137, 145) {};
-
 void ShrubberyCreationForm::execute(Bureaucrat const & b) const {
     if (!getSign())
         throw FormNotSignedException();

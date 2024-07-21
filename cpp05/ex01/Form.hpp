@@ -6,15 +6,13 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 07:24:15 by aamhal            #+#    #+#             */
-/*   Updated: 2024/03/25 17:26:02 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:05:49 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_H
-#define FORM_H
-
+#pragma once
 #include "Bureaucrat.hpp"
-
+class Bureaucrat;
 class Form
 {
 private:
@@ -52,5 +50,3 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& out, Form const &f);
-
-#endif

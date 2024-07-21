@@ -6,12 +6,11 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 07:45:40 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/01 08:00:25 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:13:43 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_HPP
-#define INTERN_HPP
+#pragma once
 
 #include <string>
 #include "AForm.hpp"
@@ -25,5 +24,3 @@ public:
 
     AForm* makeForm(const std::string &formName, const std::string &target);
 };
-
-#endif

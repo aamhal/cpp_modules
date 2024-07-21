@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 07:31:10 by aamhal            #+#    #+#             */
-/*   Updated: 2024/07/13 09:25:32 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 09:35:50 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Form& Form::operator=(const Form &f){
 	return *this;
 }
 
-Form::Form(const Form& f) :name(f.name), signe(f.signe) ,signGrade(f.signGrade), execGrade(f.execGrade){ 
+Form::Form(const Form& f) :name(f.name), signe(false) ,signGrade(f.signGrade), execGrade(f.execGrade){ 
 	if (f.signGrade < 1 || f.execGrade < 1)
 		throw Form::GradeTooHighException();
 	else if (f.signGrade > 150 || f.execGrade > 150)

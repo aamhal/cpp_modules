@@ -6,15 +6,16 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:05:22 by aamhal            #+#    #+#             */
-/*   Updated: 2024/03/25 17:23:56 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:09:21 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_H
-#define BUREAUCRAT_H
+#pragma once
 
 #include <iostream>
+#include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
 private:
@@ -43,14 +44,9 @@ public:
     public:
         virtual const char* what() const throw();
     };
-	void signForm(std::string name, bool f);
+	void signForm(Form &f);
 	
 };
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const &b);
 
-
-
-
-
-#endif

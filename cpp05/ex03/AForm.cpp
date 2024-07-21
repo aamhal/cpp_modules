@@ -25,7 +25,7 @@ AForm& AForm::operator=(const AForm &f){
 	return *this;
 }
 
-AForm::AForm(const AForm& f) :name(f.name), signe(f.signe) ,signGrade(f.signGrade), execGrade(f.execGrade){ 
+AForm::AForm(const AForm& f) :name(f.name), signe(false) ,signGrade(f.signGrade), execGrade(f.execGrade){ 
 	if (f.signGrade < 1 || f.execGrade < 1)
 		throw AForm::GradeTooHighException();
 	else if (f.signGrade > 150 || f.execGrade > 150)

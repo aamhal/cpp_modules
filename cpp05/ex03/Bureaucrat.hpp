@@ -6,12 +6,12 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:05:22 by aamhal            #+#    #+#             */
-/*   Updated: 2024/06/03 09:45:11 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/07/19 11:15:46 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_H
-#define BUREAUCRAT_H
+#pragma once
+
 
 #include <iostream>
 #include "AForm.hpp"
@@ -50,14 +50,10 @@ public:
     public:
         virtual const char* what() const throw();
     };
-	void signForm(std::string name, bool f);
+	void signForm(AForm &f);
 	void executeForm(AForm const & f);
 };
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat const &b);
 
 
-
-
-
-#endif

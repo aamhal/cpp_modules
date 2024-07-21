@@ -1,5 +1,5 @@
 NAME = Bureaucrat
-CC = c++
+CC = c++ -g
 FLAGS = -Wall -Wextra -Werror -std=c++98
 SOURCE = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 OBJS = $(SOURCE:.cpp=.o)
