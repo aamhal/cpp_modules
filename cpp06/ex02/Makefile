@@ -1,12 +1,12 @@
 NAME = IdentifyRealType
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SOURCE = main.cpp IdentifyRealType.cpp
+SOURCE = main.cpp Base.cpp
 OBJS = $(SOURCE:.cpp=.o)
 
 all: $(NAME)
 
-%.o: %.cpp IdentifyRealType.hpp
+%.o: %.cpp Base.hpp A.hpp B.hpp C.hpp
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) 
