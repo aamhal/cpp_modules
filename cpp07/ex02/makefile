@@ -1,7 +1,7 @@
 NAME = Array
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SOURCE = main.cpp  
+SOURCE = main.cpp 
 OBJS = $(SOURCE:.cpp=.o)
 
 all: $(NAME)
