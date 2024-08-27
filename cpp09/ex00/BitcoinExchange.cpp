@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:35:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/27 08:51:57 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/08/27 14:18:07 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
         std::string nbr;
         if (getline(ss, date,'|')){    
             if (parcing(date)){
-                std::cout << "bad input => " << date << std::endl;
+                std::cerr << "bad input => " << date << std::endl;
                 continue;
             }
         if (getline(ss, nbr,'\0')) {
             if (nbrparcing(nbr) == 2)
             {
-                std::cout << "Error: not a positive number." << std::endl;       
+                std::cerr << "Error: not a positive number." << std::endl;       
                 continue;
             }
             if (nbrparcing(nbr))
             {
                 
-                std::cout << "bad input => " << date << std::endl;       
+                std::cerr << "bad input => " << date << std::endl;       
                 continue;
             }
         }
@@ -91,7 +91,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
     double tmp = std::strtod(nbr.c_str(), NULL);
     if(tmp > 100000)
     {
-        std::cout << "Error: too large a number." << std::endl;        
+        std::cerr << "Error: too large a number." << std::endl;        
         continue;
     }
     std::cout << date << " => " << nbr << " = " ;
