@@ -1,12 +1,12 @@
-NAME = btc
-CC = c++
+NAME = PmergeMe
+CC = c++ 
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SOURCE = main.cpp BitcoinExchange.cpp
+SOURCE = main.cpp PmergeMe.cpp
 OBJS = $(SOURCE:.cpp=.o)
 
 all: $(NAME)
 
-%.o: %.cpp BitcoinExchange.hpp
+%.o: %.cpp PmergeMe.hpp
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) 
