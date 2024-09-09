@@ -6,14 +6,17 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:35:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/27 14:18:07 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/09 19:41:14 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <cctype>
+#include <cstddef>
+#include <cstdio>
 #include <cstdlib>
 #include <fstream>
+#include <string>
 
 
 BitcoinExchange::BitcoinExchange(const std::string &dbFile) {
@@ -40,15 +43,18 @@ void BitcoinExchange::loadDatabase(const std::string &dbFile) {
 	 std::ifstream file(dbFile);
     if (!file.is_open()) {
         std::cerr << "Error: could not open file." << std::endl;
-        return;
+        exit(1);
     }
-
     std::string line;
+    if (!std::getline(file, line)){
+        std::cerr << "Error: data empty." << std::endl;
+        file.close();
+        exit(1) ;
+    }
     while (std::getline(file, line)) {
         std::istringstream ss(line);
         std::string date;
         float price;
-
         if (std::getline(ss, date, ',') && ss >> price) {
             map[date] = price;
         }
@@ -63,12 +69,23 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
         std::cerr << "Error: could not open file." << std::endl;
         return;
     }
+        std::string h_code;
+        if (getline(file,h_code))
+        {
+            if (( h_code != "date | value"))
+            {
+                std::cerr << "invalid file form." << std::endl;
+                file.close();
+                return  ;
+            }
+        }
 
     std::string line;
     while (std::getline(file, line)) {
         std::istringstream ss(line);
         std::string date;
         std::string nbr;
+        
         if (getline(ss, date,'|')){    
             if (parcing(date)){
                 std::cerr << "bad input => " << date << std::endl;
@@ -89,6 +106,11 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
         }
     }
     double tmp = std::strtod(nbr.c_str(), NULL);
+    if(map.begin()->first > date)
+    {
+        std::cerr << "bad input => " << date << std::endl;       
+        continue;
+    }
     if(tmp > 100000)
     {
         std::cerr << "Error: too large a number." << std::endl;        
@@ -110,6 +132,18 @@ int BitcoinExchange::parcing(const std::string &date){
 	std::getline(ss, year, '-');
 	std::getline(ss, month, '-');
 	std::getline(ss, day, '\0');
+    for (size_t i = 0; i < year.size();i++) {
+        if(!std::isdigit(year[i]))
+            return 1;
+    }
+    for (size_t i = 0; i < month.size();i++) {
+        if(!std::isdigit(month[i]))
+            return 1;
+    }
+    for (size_t i = 0; i < day.size()-1;i++) {
+        if(!std::isdigit(day[i]))
+            return 1;
+    }
     if (year.length() != 4 && month.length() !=2 && day.length() != 3)
         return 1;
     if (std::atoi(year.c_str()) > 2024 || std::atoi(year.c_str()) < 0)
@@ -154,7 +188,7 @@ int BitcoinExchange::nbrparcing(const std::string &nbr){
         return (1);
         if (nbr[i] == '.')
             count++;
-    }    
+    } 
     if (nbr[1] == '-')
         return 2;
     if (count > 1)

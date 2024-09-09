@@ -7,16 +7,16 @@ OBJS = $(SOURCE:.cpp=.o)
 all: $(NAME)
 
 %.o: %.cpp BitcoinExchange.hpp
-	@$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) 
-	@$(CC) $(OBJS) -o $(NAME) 
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME) 
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

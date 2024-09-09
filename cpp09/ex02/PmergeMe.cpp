@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 07:46:41 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/31 12:16:24 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/09 20:17:04 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>
 #include <utility>
 #include <vector>
 
@@ -34,8 +35,17 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &pm){
 PmergeMe::~PmergeMe() {};
 
 
+
+
 int PmergeMe::parcing(char **av){
 	int j = 0;
+	for (int i = 1; av[i]; i++)
+	{
+		if (std::strtod(av[i], NULL) != std::atoi(av[i]))	{
+			std::cerr << "bad argument !" << std::endl;
+			exit(1);
+		}
+	}	
 	for (int i = 1; av[i]; i++){
 		j = 0;
 		while(av[i][j])
@@ -60,7 +70,9 @@ int PmergeMe::parcing(char **av){
 
 void PmergeMe::fill_vec(char **av, std::vector<int> &vec){
 	for (int i = 1; av[i]; i++)
+	{
 		vec.push_back(std::atoi(av[i]));
+	}
 
 }
 
@@ -166,7 +178,7 @@ void PmergeMe::ft_sort(char **av){
 		std::cout << this->vec[i] << " ";
 	
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << this->vec.size()<< " elements with std::vector :  "<< (double)time << " us"<< std::endl;
+	std::cout << "Time to process a range of " << this->vec.size()<< " elements with std::vector :  "<< time << " us"<< std::endl;
 }
 
 
@@ -176,6 +188,14 @@ void PmergeMe::ft_sort(char **av){
 int PmergeMe::parcing_deq(char **av){
 	
 	int j = 0;
+	for (int i = 1; av[i]; i++)
+	{
+		if (std::strtod(av[i], NULL) != std::atoi(av[i]))	{
+			std::cerr << "bad argument !" << std::endl;
+			exit(1);
+		}
+			
+	}
 	for (int i = 1; av[i]; i++){
 		j = 0;
 		while(av[i][j])
@@ -195,7 +215,10 @@ int PmergeMe::parcing_deq(char **av){
 
 void PmergeMe::fill_deq(char **av, std::deque<int> &deq){
 	for (int i = 1; av[i]; i++)
+	{
 		deq.push_back(std::atoi(av[i]));
+		
+	}
 
 }
 
@@ -239,9 +262,10 @@ void PmergeMe::jacobs_deq(int len,std::deque<int> &deq){
 }
 
 void PmergeMe::ft_sort_deq(char **av){
-if (parcing_deq(av))
+
+	if (parcing_deq(av))
 			return  ;
-	clock_t b_time, end_time;
+	std::clock_t b_time, end_time;
 	b_time = clock();
 	std::deque<int> deq;
 	fill_deq(av, deq);
@@ -292,7 +316,7 @@ if (parcing_deq(av))
 	this->deq.clear();
 	this->deq = main;
 	end_time = clock();
-	time =  (double)(end_time - b_time);
-	std::cout << "Time to process a range of " << this->deq.size()<< " elements with std::deque :  "<< (double)this->time << " us"<< std::endl;
+	this->time =  (double)(end_time - b_time);
+	std::cout << "Time to process a range of " << this->deq.size() << " elements with std::deque :  "<< this->time << " us"<< std::endl;
 
 }
