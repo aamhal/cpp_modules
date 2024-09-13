@@ -6,17 +6,22 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 07:46:41 by aamhal            #+#    #+#             */
-/*   Updated: 2024/09/09 20:17:04 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/12 06:55:17 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 #include <algorithm>
+#include <cctype>
 #include <cstddef>
 #include <cstdio>
 #include <cstdlib>
+#include <cstring>
 #include <ctime>
 #include <iomanip>
+#include <iostream>
+#include <iterator>
+#include <sstream>
 #include <utility>
 #include <vector>
 
@@ -35,46 +40,65 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &pm){
 PmergeMe::~PmergeMe() {};
 
 
-
-
-int PmergeMe::parcing(char **av){
-	int j = 0;
-	for (int i = 1; av[i]; i++)
-	{
-		if (std::strtod(av[i], NULL) != std::atoi(av[i]))	{
-			std::cerr << "bad argument !" << std::endl;
+void PmergeMe::moreparc(std::string av)
+{
+	for (size_t i = 0; i < av.length(); i++){
+		if(!std::isdigit(av[i]) && av[i] != ' '){
+			std::cerr << "Error"<< std::endl;
 			exit(1);
 		}
-	}	
-	for (int i = 1; av[i]; i++){
-		j = 0;
-		while(av[i][j])
-		{
-			if (!std::isdigit(av[i][0]) ||  av[i][0] == '+')
-				j++; ;
-			if (av[i][0] == '-')
-				return 1;
-			if (!std::isdigit(av[i][j]))
-				return 1;
-			j++;
-		}
 	}
-	std::cout << "Before: ";
-	for (int i = 1; av[i]; i++)
-			std::cout << av[i] << " ";
-	std::cout << std::endl;
-	
-	return 0;
+		std::istringstream ss(av);
+		std::string tmp;
+		while(ss >> tmp){
+			if (std::strtod(tmp.c_str(), NULL) != std::atoi(tmp.c_str()))	{
+			std::cerr << "Error" << std::endl;
+			exit(1);
+		}
+			this->vec.push_back(std::atoi(tmp.c_str()));
+			this->deq.push_back(std::atoi(tmp.c_str()));
+		}
 }
 
-
-void PmergeMe::fill_vec(char **av, std::vector<int> &vec){
+void PmergeMe::parcing(char **av){
+	int count = 0;
+	while(av[count])
+		count++;
+	if (count < 3 ){
+		std::cerr << "Error"<< std::endl;
+			exit(1);
+	}
 	for (int i = 1; av[i]; i++)
 	{
-		vec.push_back(std::atoi(av[i]));
+		if (av[i] &&std::strtod(av[i], NULL) != std::atoi(av[i]))	{
+			std::cerr << "Error" << std::endl;
+			exit(1);
+		}
+			
 	}
-
+	for (size_t i = 1; av[i] ; i++)
+	{
+		int f = 0;
+		for (size_t j = 0; av[i][j] ; j++)
+		{
+			if (av[i][j] == ' ')
+			{
+				f = 1;
+				moreparc(av[i]);
+				break ;
+			}
+			else if (!std::isdigit(av[i][j])){
+				std::cerr << "Error"<< std::endl;
+					exit(1);
+			}
+		}
+		if (f == 0){
+			this->vec.push_back(std::atoi(av[i]));
+			this->deq.push_back(std::atoi(av[i]));
+		}
+	}
 }
+
 
 
 void PmergeMe::vec_pair(std::vector<std::pair<int, int> > &pair_v){
@@ -117,14 +141,15 @@ void PmergeMe::jacobs_vec(int len,std::vector<int> &vec){
 
 void PmergeMe::ft_sort(char **av){
 
-	if (parcing(av)){
-		std::cerr << "Error" << std::endl;
-			return  ;
-	}
+	parcing(av);
+	std::cout << "before : ";
+	for(size_t i = 0 ; i < this->vec.size() ;i++)
+		std::cout << vec[i] << " ";
+	std::cout <<std::endl;
 	clock_t b_time, end_time;
 	b_time = clock();
 	std::vector<int> vec;
-	fill_vec(av, vec);
+	vec = this->vec;
 	int left_f = 0, left = 0;
 	if (vec.size() % 2 != 0)
 		left_f = 1;
@@ -160,6 +185,7 @@ void PmergeMe::ft_sort(char **av){
 	jacobs_vec(len, jacobs);
 	main.insert(main.begin(),pend[0]);
 	int i = 1, j = 1;
+	for (size_t k = 0; k < jacobs.size(); k++)
 	while(i < (int)pend.size() && j < (int)jacobs.size()){
 		if (jacobs[j] < (int)pend.size()){
 			main.insert(std::lower_bound(main.begin(), main.end(), pend[jacobs[j]]), pend[jacobs[j]]);
@@ -184,43 +210,6 @@ void PmergeMe::ft_sort(char **av){
 
 //=========================================================
 
-
-int PmergeMe::parcing_deq(char **av){
-	
-	int j = 0;
-	for (int i = 1; av[i]; i++)
-	{
-		if (std::strtod(av[i], NULL) != std::atoi(av[i]))	{
-			std::cerr << "bad argument !" << std::endl;
-			exit(1);
-		}
-			
-	}
-	for (int i = 1; av[i]; i++){
-		j = 0;
-		while(av[i][j])
-		{
-			if (!std::isdigit(av[i][0]) ||  av[i][0] == '+')
-				j++; ;
-			if (av[i][0] == '-')
-				return 1;
-			if (!std::isdigit(av[i][j]))
-				return 1;
-			j++;
-		}
-	}
-	return 0;
-}
-
-
-void PmergeMe::fill_deq(char **av, std::deque<int> &deq){
-	for (int i = 1; av[i]; i++)
-	{
-		deq.push_back(std::atoi(av[i]));
-		
-	}
-
-}
 
 
 void PmergeMe::deq_pair(std::deque<std::pair<int, int> > &pair_v){
@@ -263,12 +252,12 @@ void PmergeMe::jacobs_deq(int len,std::deque<int> &deq){
 
 void PmergeMe::ft_sort_deq(char **av){
 
-	if (parcing_deq(av))
-			return  ;
+	(void)av;
+	
 	std::clock_t b_time, end_time;
 	b_time = clock();
 	std::deque<int> deq;
-	fill_deq(av, deq);
+	deq = this->deq;
 	int left_f = 0, left = 0;
 	if (deq.size() % 2 != 0)
 		left_f = 1;
@@ -316,7 +305,7 @@ void PmergeMe::ft_sort_deq(char **av){
 	this->deq.clear();
 	this->deq = main;
 	end_time = clock();
-	this->time =  (double)(end_time - b_time);
+	time =  (double)(end_time - b_time);
 	std::cout << "Time to process a range of " << this->deq.size() << " elements with std::deque :  "<< this->time << " us"<< std::endl;
 
 }

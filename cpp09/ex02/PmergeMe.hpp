@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 07:46:31 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/31 12:13:29 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/10 06:32:40 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,14 @@ class PmergeMe {
 	~PmergeMe();
 
 	
-	int parcing(char **av);
+	void parcing(char **av);
 	void fill_vec(char **av, std::vector<int> &vec);
 	void vec_pair(std::vector<std::pair<int, int> > &pair_v);
 	void ft_sort(char **av);
 	void jacobs_vec(int len,std::vector<int> &vec);
+	void moreparc(std::string av);
 
 
-
-
-
-	int parcing_deq(char **av);
 	void fill_deq(char **av, std::deque<int> &vec);
 	void deq_pair(std::deque<std::pair<int, int> > &pair_v);
 	void ft_sort_deq(char **av);

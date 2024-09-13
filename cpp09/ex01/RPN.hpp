@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:53:00 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/27 15:49:54 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/11 03:07:09 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 class RPN {
 	private:
-		std::stack<int> stack;
+		std::stack<double > stack;
 		std::string argument;
 	public:
 	RPN();

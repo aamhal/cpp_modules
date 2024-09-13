@@ -6,16 +6,18 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:59:23 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/27 15:53:13 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/12 08:00:14 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include <cctype>
+#include <climits>
 #include <cstddef>
 #include <iostream>
 #include <istream>
 #include <sstream>
+#include <limits>
 
 RPN::RPN() {};
 RPN::RPN(const std::string &arg) :argument(arg){};
@@ -50,7 +52,7 @@ void RPN::calculate(){
 		return ;
 	}
 	std::istringstream ss(argument);
-	int a,b,c;
+	double  a,b,c;
 	std::string nbr;
 	while (ss >> nbr){
 		if (nbr == "+" || nbr == "-" || nbr == "*" || nbr == "/"){
@@ -70,10 +72,15 @@ void RPN::calculate(){
 				c = b * a;
 			else if (nbr == "/"){
 				if (a == 0){
-					std::cerr << "Error" << std::endl;
+					std::cerr << "Error : can't divide by 0` " << std::endl;
 					return ;
 				}
 				c = b / a;
+			}
+			if (c > INT_MAX || c < INT_MIN)
+			{
+				std::cerr << "Error : overflow" << std::endl;
+					return ;
 			}
 			this->stack.push(c);
 		}

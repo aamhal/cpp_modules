@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 11:35:26 by aamhal            #+#    #+#             */
-/*   Updated: 2024/09/09 19:41:14 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/13 19:57:49 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
 #include <string>
 
 
@@ -111,7 +112,7 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
         std::cerr << "bad input => " << date << std::endl;       
         continue;
     }
-    if(tmp > 100000)
+    if(tmp > 1000)
     {
         std::cerr << "Error: too large a number." << std::endl;        
         continue;
@@ -122,57 +123,56 @@ void BitcoinExchange::processInputFile(const std::string &inputFile){
     file.close();
 }
 
-int BitcoinExchange::parcing(const std::string &date){
-    if (date.length() != 11)
+int BitcoinExchange::parcing(const std::string &ds) {
+    std::string date = ds.substr(0,ds.length() -1);
+    if (date.length() != 10 || date[4] != '-' || date[7] != '-') {
         return 1;
-    if (date[1] == ' ' || date[7] != '-')
-        return 1;
-    std::string year, month, day;
-	std::stringstream ss(date);
-	std::getline(ss, year, '-');
-	std::getline(ss, month, '-');
-	std::getline(ss, day, '\0');
-    for (size_t i = 0; i < year.size();i++) {
-        if(!std::isdigit(year[i]))
+    }
+    for (size_t i = 0; i < date.length(); ++i) {
+        if ((i != 4 && i != 7) && !std::isdigit(date[i])) {
             return 1;
+        }
     }
-    for (size_t i = 0; i < month.size();i++) {
-        if(!std::isdigit(month[i]))
-            return 1;
-    }
-    for (size_t i = 0; i < day.size()-1;i++) {
-        if(!std::isdigit(day[i]))
-            return 1;
-    }
-    if (year.length() != 4 && month.length() !=2 && day.length() != 3)
-        return 1;
-    if (std::atoi(year.c_str()) > 2024 || std::atoi(year.c_str()) < 0)
-        return 1;
-    if (std::atoi(month.c_str()) > 12 || std::atoi(month.c_str()) < 0){
-        return 1;
-    }
-    if (std::atoi(month.c_str()) == 1 || std::atoi(month.c_str()) == 3 || std::atoi(month.c_str()) == 5 || std::atoi(month.c_str()) == 7 || std::atoi(month.c_str()) == 8 ||std::atoi(month.c_str()) == 10 || std::atoi(month.c_str()) == 12)
-    {
-    if (std::atoi(day.c_str()) > 31 || std::atoi(day.c_str()) < 0)
-        return 1;
-    }
-    else if (std::atoi(month.c_str()) == 2)
-    {
-    if ((std::atoi(year.c_str()) % 4 == 0 && std::atoi(year.c_str()) % 100 != 0) || (std::atoi(year.c_str()) % 400 == 0)){   
-    if (std::atoi(day.c_str()) > 29 || std::atoi(day.c_str()) < 0)
-        return 1;
-    }
-    else {
-        if (std::atoi(day.c_str()) > 28 || std::atoi(day.c_str()) < 0)
-            return 1;
-    }
-    }
-    else {
 
-    if (std::atoi(day.c_str()) > 30 || std::atoi(day.c_str()) < 0)
+    std::time_t t = std::time(0);
+    std::tm* now = std::localtime(&t);
+
+    int currentYear = now->tm_year + 1900;
+    int currentMonth = now->tm_mon + 1;
+    int currentDay = now->tm_mday;
+
+
+    std::string year, month, day;
+    std::stringstream ss(date);
+
+    std::getline(ss, year, '-');
+    std::getline(ss, month, '-');
+    std::getline(ss, day, '\0');
+
+    int y = std::atoi(year.c_str());
+    int m = std::atoi(month.c_str());
+    int d = std::atoi(day.c_str());
+
+    if (m < 1 || m > 12) {
         return 1;
-       
     }
+    if (d < 1 || d > 31) {
+        return 1;
+    }
+    if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) {
+        return 1;
+    }
+    if (m == 2) {
+        if (d > 29 || (d == 29 && (y % 4 != 0 || (y % 100 == 0 && y % 400 != 0)))) {
+            return 1;
+        }
+    }
+
+    if (y > currentYear ||
+        (y == currentYear && m > currentMonth) ||
+        (y == currentYear && m == currentMonth && d > currentDay))
+        return 1;
+
     return 0;
 }
 
@@ -183,8 +183,11 @@ int BitcoinExchange::nbrparcing(const std::string &nbr){
     if (nbr[1] == '.')
             return 1;
     int count = 0;
-    for (size_t i = 1; i < nbr.length();i++) {
-        if (!std::isdigit(nbr[i]) && nbr[i] != '.' && nbr[i] != '-' && nbr[i] != '+')
+    if(nbr[1] == '+' && nbr[1] == '-' && nbr.length() == 1)
+        return 1;
+    // std::cout << '|' << nbr << '|' << std::endl;
+    for (size_t i = 2; i < nbr.length();i++) {
+        if (!std::isdigit(nbr[i]) && nbr[i] != '.')
         return (1);
         if (nbr[i] == '.')
             count++;
@@ -195,3 +198,4 @@ int BitcoinExchange::nbrparcing(const std::string &nbr){
         return 1;
     return 0;
 }
+    

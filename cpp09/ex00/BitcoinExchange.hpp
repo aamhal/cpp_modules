@@ -6,7 +6,7 @@
 /*   By: aamhal <aamhal@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 08:21:04 by aamhal            #+#    #+#             */
-/*   Updated: 2024/08/27 08:31:30 by aamhal           ###   ########.fr       */
+/*   Updated: 2024/09/11 02:40:31 by aamhal           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 class BitcoinExchange {
 private:
-    std::map<std::string, float> map;
+    std::map<std::string, double> map;
 
 public:
     BitcoinExchange();
@@ -33,6 +33,6 @@ public:
 
     void loadDatabase(const std::string &dbFile);
     void processInputFile(const std::string &inputFile);
-    int parcing(const std::string &date);
+    int parcing(const std::string &ds);
     int nbrparcing(const std::string &nbr);
 };
